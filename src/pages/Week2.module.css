@@ -1,0 +1,23 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.formSignin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.primaryImage {
+  height: 300px;
+}
+
+.images {
+  height: 150px;
+  margin-right: 5px;
+}
