@@ -73,6 +73,7 @@ function Week2() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsAuth(false);
+    setFormData({ username: "", password: "" });
     setProducts([]);
     setTempProduct(null);
   };
