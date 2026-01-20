@@ -32,6 +32,7 @@ function Week3() {
   const [products, setProducts] = useState([]);
 
   const [tempPD, setTempPd] = useState(defaultPd);
+  const [isLoading, setIsLoading] = useState(false);
   const [isNew, setIsNew] = useState(true);
   const [newImageUrl, setNewImageUrl] = useState("");
 
@@ -49,11 +50,14 @@ function Week3() {
   };
 
   const checkAdmin = async () => {
+    setIsLoading(true);
     try {
       await axios.post(`${API_BASE}/api/user/check`);
       setIsAuth(true);
-      getProduct();
+      getProduct().finally(() => setIsLoading(false));
     } catch (err) {
+      setIsAuth(false);
+      setIsLoading(false);
       console.log(err.response.data.message);
     }
   };
@@ -85,10 +89,13 @@ function Week3() {
       const { token, expired } = response.data;
       document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
       axios.defaults.headers.common.Authorization = token;
+      setIsLoading(true);
       setIsAuth(true);
-      getProduct();
+      await getProduct();
     } catch (error) {
       alert("登入失敗: " + error.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -128,7 +135,7 @@ function Week3() {
       productModalRef.current.hide();
       setTempPd(defaultPd);
       setNewImageUrl("");
-      getProduct();
+      await getProduct();
     } catch (err) {
       alert(err?.response?.data?.message || "更新失敗");
     }
@@ -138,7 +145,7 @@ function Week3() {
     if (!window.confirm(`確定要刪除「${item.title}」嗎？`)) return;
 
     await axios.delete(`${API_BASE}/api/${API_PATH}/admin/product/${item.id}`);
-    getProduct();
+    await getProduct();
   };
 
   const createNew = () => {
@@ -196,62 +203,68 @@ function Week3() {
   return (
     <>
       {isAuth ? (
-        <div>
-          <div className="container">
-            <div className="text-end mt-4">
-              <button className="btn btn-primary" onClick={createNew}>
-                建立新的產品
-              </button>
-            </div>
-            <table className="table table-hover mt-4">
-              <thead>
-                <tr className="table-primary text-center align-middle">
-                  <th width="120">分類</th>
-                  <th>產品名稱</th>
-                  <th width="120">原價</th>
-                  <th width="120">售價</th>
-                  <th width="100">是否啟用</th>
-                  <th width="120">編輯</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((item) => (
-                  <tr key={item.id} className="text-center align-middle">
-                    <td>{item.category}</td>
-                    <td>{item.title}</td>
-                    <td>{item.origin_price}</td>
-                    <td>{item.price}</td>
-                    <td>
-                      {item.is_enabled ? (
-                        <span className="text-success">啟用</span>
-                      ) : (
-                        <span>未啟用</span>
-                      )}
-                    </td>
-                    <td>
-                      <div className="btn-group">
-                        <button
-                          type="button"
-                          className="btn btn-outline-primary btn-sm"
-                          onClick={() => editProduct(item)}
-                        >
-                          編輯
-                        </button>
-                        <button
-                          type="button"
-                          className="btn btn-outline-danger btn-sm"
-                          onClick={() => deleteProduct(item)}
-                        >
-                          刪除
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        isLoading ? (
+          <div className="text-center py-5">
+            <p className="fs-5"> 載入產品中... </p>
           </div>
-        </div>
+        ) : (
+          <div>
+            <div className="container">
+              <div className="text-end mt-4">
+                <button className="btn btn-primary" onClick={createNew}>
+                  建立新的產品
+                </button>
+              </div>
+              <table className="table table-hover mt-4">
+                <thead>
+                  <tr className="table-primary text-center align-middle">
+                    <th width="120">分類</th>
+                    <th>產品名稱</th>
+                    <th width="120">原價</th>
+                    <th width="120">售價</th>
+                    <th width="100">是否啟用</th>
+                    <th width="120">編輯</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((item) => (
+                    <tr key={item.id} className="text-center align-middle">
+                      <td>{item.category}</td>
+                      <td>{item.title}</td>
+                      <td>{item.origin_price}</td>
+                      <td>{item.price}</td>
+                      <td>
+                        {item.is_enabled ? (
+                          <span className="text-success">啟用</span>
+                        ) : (
+                          <span>未啟用</span>
+                        )}
+                      </td>
+                      <td>
+                        <div className="btn-group">
+                          <button
+                            type="button"
+                            className="btn btn-outline-primary btn-sm"
+                            onClick={() => editProduct(item)}
+                          >
+                            編輯
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-outline-danger btn-sm"
+                            onClick={() => deleteProduct(item)}
+                          >
+                            刪除
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )
       ) : (
         <div className={`container ${week3Css.login}`}>
           <div className="row justify-content-center">
@@ -311,13 +324,13 @@ function Week3() {
           <div className="modal-content border-0">
             <div className="modal-header bg-dark text-white">
               <h5 id="productModalLabel" className="modal-title">
-                <span>新增產品</span>
+                {isNew ? <span>新增產品</span> : <span>編輯產品</span>}
               </h5>
               <button
                 type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
+                className="btn-close btn-close-white"
                 aria-label="Close"
+                onClick={cancelSubmit}
               ></button>
             </div>
             <div className="modal-body">
