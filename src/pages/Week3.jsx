@@ -54,11 +54,12 @@ function Week3() {
     try {
       await axios.post(`${API_BASE}/api/user/check`);
       setIsAuth(true);
-      getProduct().finally(() => setIsLoading(false));
+      await getProduct();
     } catch (err) {
       setIsAuth(false);
-      setIsLoading(false);
       console.log(err.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
