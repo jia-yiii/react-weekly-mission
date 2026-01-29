@@ -6,12 +6,12 @@ const ProductModal = forwardRef(
       isNew,
       tempPD,
       newImageUrl,
-      onTempPdChange,
-      onNewImageUrlChange,
-      onAddOtherImage,
-      onRemoveOtherImage,
-      onCancel,
-      onSubmit,
+      handleTempPdChange,
+      setNewImageUrl,
+      addOtherImage,
+      removeOtherImage,
+      cancelSubmit,
+      submitProduct,
       imageClassName = "",
     },
     modalElRef,
@@ -36,7 +36,7 @@ const ProductModal = forwardRef(
                   type="button"
                   className="btn-close btn-close-white"
                   aria-label="Close"
-                  onClick={onCancel}
+                  onClick={cancelSubmit}
                 ></button>
               </div>
               <div className="modal-body">
@@ -56,7 +56,7 @@ const ProductModal = forwardRef(
                           className="form-control"
                           placeholder="請輸入主要圖片連結"
                           value={tempPD.imageUrl}
-                          onChange={onTempPdChange}
+                          onChange={handleTempPdChange}
                         />
                       </div>
                       {tempPD.imageUrl && (
@@ -85,12 +85,12 @@ const ProductModal = forwardRef(
                           className="form-control"
                           placeholder="請輸入其他圖片連結"
                           value={newImageUrl}
-                          onChange={(e) => onNewImageUrlChange(e.target.value)}
+                          onChange={(e) => setNewImageUrl(e.target.value)}
                         />
                         <button
                           type="button"
                           className="btn btn-outline-primary"
-                          onClick={onAddOtherImage}
+                          onClick={addOtherImage}
                           disabled={
                             (Array.isArray(tempPD.imagesUrl)
                               ? tempPD.imagesUrl.length
@@ -125,7 +125,7 @@ const ProductModal = forwardRef(
                             <button
                               type="button"
                               className="btn btn-outline-danger btn-sm w-100"
-                              onClick={() => onRemoveOtherImage(idx)}
+                              onClick={() => removeOtherImage(idx)}
                             >
                               刪除這張
                             </button>
@@ -146,7 +146,7 @@ const ProductModal = forwardRef(
                         className="form-control"
                         placeholder="請輸入標題"
                         value={tempPD.title}
-                        onChange={onTempPdChange}
+                        onChange={handleTempPdChange}
                       />
                     </div>
 
@@ -164,7 +164,7 @@ const ProductModal = forwardRef(
                           className="form-control"
                           placeholder="請輸入分類"
                           value={tempPD.category}
-                          onChange={onTempPdChange}
+                          onChange={handleTempPdChange}
                         />
                       </div>
                       <div className="mb-3 col-md-6">
@@ -177,7 +177,7 @@ const ProductModal = forwardRef(
                           className="form-control"
                           placeholder="請輸入單位"
                           value={tempPD.unit}
-                          onChange={onTempPdChange}
+                          onChange={handleTempPdChange}
                         />
                       </div>
                     </div>
@@ -197,7 +197,7 @@ const ProductModal = forwardRef(
                           className="form-control"
                           placeholder="請輸入原價"
                           value={tempPD.origin_price}
-                          onChange={onTempPdChange}
+                          onChange={handleTempPdChange}
                         />
                       </div>
                       <div className="mb-3 col-md-6">
@@ -211,7 +211,7 @@ const ProductModal = forwardRef(
                           className="form-control"
                           placeholder="請輸入售價"
                           value={tempPD.price}
-                          onChange={onTempPdChange}
+                          onChange={handleTempPdChange}
                         />
                       </div>
                     </div>
@@ -229,7 +229,7 @@ const ProductModal = forwardRef(
                         className="form-control"
                         placeholder="請輸入產品描述"
                         value={tempPD.description}
-                        onChange={onTempPdChange}
+                        onChange={handleTempPdChange}
                       ></textarea>
                     </div>
                     <div className="mb-3">
@@ -241,7 +241,7 @@ const ProductModal = forwardRef(
                         className="form-control"
                         placeholder="請輸入說明內容"
                         value={tempPD.content}
-                        onChange={onTempPdChange}
+                        onChange={handleTempPdChange}
                       ></textarea>
                     </div>
                     <div className="mb-3">
@@ -251,7 +251,7 @@ const ProductModal = forwardRef(
                           className="form-check-input"
                           type="checkbox"
                           checked={!!tempPD.is_enabled}
-                          onChange={onTempPdChange}
+                          onChange={handleTempPdChange}
                         />
                         <label
                           className="form-check-label fw-bold"
@@ -269,14 +269,14 @@ const ProductModal = forwardRef(
                   type="button"
                   className="btn btn-outline-secondary"
                   // data-bs-dismiss="modal"
-                  onClick={onCancel}
+                  onClick={cancelSubmit}
                 >
                   取消
                 </button>
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={onSubmit}
+                  onClick={submitProduct}
                 >
                   確認
                 </button>

@@ -338,12 +338,12 @@ function Week4() {
         isNew={isNew}
         tempPD={tempPD}
         newImageUrl={newImageUrl}
-        onTempPdChange={handleTempPdChange}
-        onNewImageUrlChange={setNewImageUrl}
-        onAddOtherImage={addOtherImage}
-        onRemoveOtherImage={removeOtherImage}
-        onCancel={cancelSubmit}
-        onSubmit={submitProduct}
+        handleTempPdChange={handleTempPdChange}
+        setNewImageUrl={setNewImageUrl}
+        addOtherImage={addOtherImage}
+        removeOtherImage={removeOtherImage}
+        cancelSubmit={cancelSubmit}
+        submitProduct={submitProduct}
         imageClassName={week4Css.editImages}
       />
     </>
