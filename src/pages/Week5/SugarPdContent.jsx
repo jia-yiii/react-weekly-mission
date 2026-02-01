@@ -1,17 +1,19 @@
 import { useParams, NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import W5Navbar from "@/components/W5Navbar";
 import styles from "./sugarPdContent.module.css";
 import cartIcon from "@/assets/sugarIsland/cart_icon2.png";
+import { CartContext } from "../../store";
+
+const API_BASE = import.meta.env.VITE_API_BASE;
+const API_PATH = import.meta.env.VITE_API_PATH;
 
 function SugarPdContent() {
   const { id } = useParams();
+  const [state, dispatch] = useContext(CartContext);
   const [product, setProduct] = useState(null);
   const [currentImage, setCurrentImage] = useState("");
-
-  const API_BASE = import.meta.env.VITE_API_BASE;
-  const API_PATH = import.meta.env.VITE_API_PATH;
 
   useEffect(() => {
     const getProduct = async () => {
@@ -29,6 +31,21 @@ function SugarPdContent() {
     product.imageUrl,
     ...(product.imagesUrl?.filter(Boolean) || []),
   ].filter(Boolean);
+
+  const addToCart = (item) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        id: item.id,
+        title: item.title,
+        imageUrl: item.imageUrl,
+        originPrice: item.origin_price,
+        price: item.price,
+        quantity: 1,
+      },
+    });
+  };
+
   return (
     <>
       <W5Navbar />
@@ -36,14 +53,15 @@ function SugarPdContent() {
       <div className="mt-4 ms-4 d-flex justify-content-start">
         <NavLink
           to="/sugarIsland/pdlist"
-          className={`btn btn-light rounded-pill px-4 ${styles.btn}`}
+          className={`btn btn-light rounded px-3 mx-4 ${styles.btn}`}
         >
-          回到商品列表
+          回到產品列表
         </NavLink>
       </div>
       <div className="container">
         <hr />
-        <div className="h3 fw-bold mb-3">{product.title}</div>
+        <div className="h3 fw-bold mb-3 d-block d-lg-none">{product.title}</div>
+
         <div className="p-2 mb-4">
           <div className="row align-items-stretch">
             <div className="col-12 col-lg-5 mb-4 mb-lg-0 h-100">
@@ -106,7 +124,12 @@ function SugarPdContent() {
                         ｜{product.price} 元
                       </div>
                     </div>
-                    <div className={`btn btn-light ${styles.btn} mt-auto mb-5`}>
+                    <div
+                      className={`btn btn-light ${styles.btn} mt-auto mb-5`}
+                      onClick={() => {
+                        addToCart(product);
+                      }}
+                    >
                       <img
                         src={cartIcon}
                         alt="cartIcon"

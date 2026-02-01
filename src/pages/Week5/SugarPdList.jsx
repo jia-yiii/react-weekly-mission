@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import W5Navbar from "@/components/W5Navbar";
 import style from "@/pages/Week5/SugarPdList0.module.css";
 import cartIcon from "@/assets/sugarIsland/cart_icon2.png";
+import { CartContext } from "../../store";
 
 function SugarPdList() {
+  const [state, dispatch] = useContext(CartContext);
   const API_BASE = import.meta.env.VITE_API_BASE;
   const API_PATH = import.meta.env.VITE_API_PATH;
   const navigate = useNavigate();
@@ -24,6 +26,20 @@ function SugarPdList() {
   useEffect(() => {
     getProduct();
   }, []);
+
+  const addToCart = (item) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        id: item.id,
+        title: item.title,
+        imageUrl: item.imageUrl,
+        originPrice: item.origin_price,
+        price: item.price,
+        quantity: 1,
+      },
+    });
+  };
 
   return (
     <>
@@ -64,10 +80,15 @@ function SugarPdList() {
                     >
                       查看細節
                     </div>
-                    <div className={`btn btn-light ${style.btn}`}>
+                    <div
+                      className={`btn btn-light ${style.btn}`}
+                      onClick={() => {
+                        addToCart(item);
+                      }}
+                    >
                       <img
                         src={cartIcon}
-                        alt="cartIcon"
+                        alt="加入購物車"
                         className={style.cartIcon}
                       />
                     </div>
@@ -76,6 +97,7 @@ function SugarPdList() {
               </div>
             </div>
           ))}
+          <div className="my-3"></div>
         </div>
       </div>
     </>

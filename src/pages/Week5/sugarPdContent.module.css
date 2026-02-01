@@ -15,6 +15,7 @@
 }
 
 .mainImageWrapper {
+  padding-top: 10px;
   width: 100%;
   max-width: 380px;
   aspect-ratio: 1 / 1;

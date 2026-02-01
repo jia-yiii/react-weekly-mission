@@ -3,8 +3,12 @@ import w5NavbarCss from "./w5Navbar.module.css";
 import logo from "@/assets/sugarIsland/sugarland_logo_header.png";
 import pdlist from "@/assets/sugarIsland/sugarland_pdlist22.png";
 import cart from "@/assets/sugarIsland/sugarland_cart22.png";
+import { useContext } from "react";
+import { CartContext } from "../store";
 
 export default function W5Navbar() {
+  const [state] = useContext(CartContext);
+  const totalQty = state.cartList.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <>
       <nav
@@ -46,7 +50,14 @@ export default function W5Navbar() {
                   to="/sugarIsland/cart"
                   className={`nav-link rounded ${w5NavbarCss.navbarText}`}
                 >
-                  <img src={cart} alt="購物車" className={w5NavbarCss.logo} />
+                  <div className={w5NavbarCss.cartBtn}>
+                    <img src={cart} alt="購物車" className={w5NavbarCss.logo} />
+                    <span
+                      className={`badge rounded-pill ${w5NavbarCss.cartSpan}`}
+                    >
+                      {totalQty === 0 ? "" : totalQty}
+                    </span>
+                  </div>
                 </NavLink>
               </li>
             </ul>
