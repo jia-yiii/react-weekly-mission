@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Navbar from "../../components/w5Navbar";
+import Navbar from "../../components/W5Navbar";
 
 function SugarNotFound() {
   return (
