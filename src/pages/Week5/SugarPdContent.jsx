@@ -1,5 +1,7 @@
 import { useParams, NavLink } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
+import { ThreeDots } from "react-loader-spinner";
+
 import axios from "axios";
 import W5Navbar from "@/components/W5Navbar";
 import styles from "./sugarPdContent.module.css";
@@ -11,38 +13,53 @@ const API_PATH = import.meta.env.VITE_API_PATH;
 
 function SugarPdContent() {
   const { id } = useParams();
-  const [state, dispatch] = useContext(CartContext);
+  const { state, actions } = useContext(CartContext);
   const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
 
   useEffect(() => {
     const getProduct = async () => {
-      const res = await axios.get(`${API_BASE}/api/${API_PATH}/product/${id}`);
-      const p = res.data.product;
-      setProduct(p);
-      const firstExtra = p?.imagesUrl?.filter(Boolean)?.[0];
-      setCurrentImage(p?.imageUrl || firstExtra || "");
+      setIsLoading(true);
+      try {
+        const res = await axios.get(
+          `${API_BASE}/api/${API_PATH}/product/${id}`,
+        );
+        const p = res.data.product;
+        setProduct(p);
+        const firstExtra = p?.imagesUrl?.filter(Boolean)?.[0];
+        setCurrentImage(p?.imageUrl || firstExtra || "");
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
     getProduct();
   }, [id]);
 
-  if (!product) return <div>Loading...</div>;
+  if (!product)
+    return (
+      <>
+        <W5Navbar />
+        <div className="container py-5 d-flex justify-content-center">
+          <ThreeDots height="80" width="80" color="#ba9787" />
+        </div>
+      </>
+    );
   const allPdPhotos = [
     product.imageUrl,
     ...(product.imagesUrl?.filter(Boolean) || []),
   ].filter(Boolean);
 
   const addToCart = (item) => {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: {
-        id: item.id,
-        title: item.title,
-        imageUrl: item.imageUrl,
-        originPrice: item.origin_price,
-        price: item.price,
-        quantity: 1,
-      },
+    actions.addToCart({
+      id: item.id,
+      title: item.title,
+      imageUrl: item.imageUrl,
+      originPrice: item.origin_price,
+      price: item.price,
+      quantity: 1,
     });
   };
 
@@ -50,15 +67,15 @@ function SugarPdContent() {
     <>
       <W5Navbar />
 
-      <div className="mt-4 ms-4 d-flex justify-content-start">
-        <NavLink
-          to="/sugarIsland/pdlist"
-          className={`btn btn-light rounded px-3 mx-4 ${styles.btn}`}
-        >
-          回到產品列表
-        </NavLink>
-      </div>
       <div className="container">
+        <div className="mt-4 ms-4 d-flex justify-content-start">
+          <NavLink
+            to="/sugarIsland/pdlist"
+            className={`btn btn-light rounded px-3 mx-4 ${styles.btn}`}
+          >
+            回到產品列表
+          </NavLink>
+        </div>
         <hr />
         <div className="h3 fw-bold mb-3 d-block d-lg-none">{product.title}</div>
 

@@ -1,19 +1,21 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
+
 import W5Navbar from "@/components/W5Navbar";
 import style from "@/pages/Week5/SugarPdList0.module.css";
 import cartIcon from "@/assets/sugarIsland/cart_icon2.png";
 import { CartContext } from "../../store";
 
 function SugarPdList() {
-  const [state, dispatch] = useContext(CartContext);
+  const { state, actions } = useContext(CartContext);
   const API_BASE = import.meta.env.VITE_API_BASE;
   const API_PATH = import.meta.env.VITE_API_PATH;
   const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
-  const [tempProduct, setTempProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getProduct = async () => {
     try {
@@ -24,20 +26,18 @@ function SugarPdList() {
     }
   };
   useEffect(() => {
-    getProduct();
+    setIsLoading(true);
+    getProduct().finally(() => setIsLoading(false));
   }, []);
 
   const addToCart = (item) => {
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: {
-        id: item.id,
-        title: item.title,
-        imageUrl: item.imageUrl,
-        originPrice: item.origin_price,
-        price: item.price,
-        quantity: 1,
-      },
+    actions.addToCart({
+      id: item.id,
+      title: item.title,
+      imageUrl: item.imageUrl,
+      originPrice: item.origin_price,
+      price: item.price,
+      quantity: 1,
     });
   };
 
@@ -53,52 +53,63 @@ function SugarPdList() {
       </div>
       <div className="container">
         <div className="my-5"></div>
-        <div className="row row-cols-2 row-cols-lg-4 g-3">
-          {products.map((item) => (
-            <div key={item.id} className="col px-2">
-              <div className="card">
-                <img
-                  src={item.imageUrl}
-                  className={`card-img-top ${style.cardPhoto}`}
-                  alt="Pd_photo"
-                />
-                <div className="card-body">
-                  <h5 className={`card-title text-truncate ${style.cardTitle}`}>
-                    {item.title}
-                  </h5>
-                  <p className="card-text">
-                    <span className="card-text text-secondary">
-                      <del>{item.origin_price}</del>
-                    </span>
-                    ｜ <span className="text-danger fw-bold">{item.price}</span>
-                    元
-                  </p>
-                  <div className="d-flex justify-content-center align-items-center">
-                    <div
-                      className={`btn btn-light me-2 ${style.btn}`}
-                      onClick={() => navigate(`/sugarIsland/pdlist/${item.id}`)}
+        {isLoading ? (
+          <div className="d-flex justify-content-center py-5">
+            <ThreeDots height="80" width="80" color="#ba9787" />
+          </div>
+        ) : (
+          <div className="row row-cols-2 row-cols-lg-4 g-3">
+            {products.map((item) => (
+              <div key={item.id} className="col px-2">
+                <div className="card">
+                  <img
+                    src={item.imageUrl}
+                    className={`card-img-top ${style.cardPhoto}`}
+                    alt="Pd_photo"
+                  />
+                  <div className="card-body">
+                    <h5
+                      className={`card-title text-truncate ${style.cardTitle}`}
                     >
-                      查看細節
-                    </div>
-                    <div
-                      className={`btn btn-light ${style.btn}`}
-                      onClick={() => {
-                        addToCart(item);
-                      }}
-                    >
-                      <img
-                        src={cartIcon}
-                        alt="加入購物車"
-                        className={style.cartIcon}
-                      />
+                      {item.title}
+                    </h5>
+                    <p className="card-text">
+                      <span className="card-text text-secondary">
+                        <del>{item.origin_price}</del>
+                      </span>
+                      ｜{" "}
+                      <span className="text-danger fw-bold">{item.price}</span>
+                      元
+                    </p>
+                    <div className="d-flex justify-content-center align-items-center">
+                      <div
+                        className={`btn btn-light me-2 ${style.btn}`}
+                        onClick={() =>
+                          navigate(`/sugarIsland/pdlist/${item.id}`)
+                        }
+                      >
+                        查看細節
+                      </div>
+                      <div
+                        className={`btn btn-light ${style.btn}`}
+                        onClick={() => {
+                          addToCart(item);
+                        }}
+                      >
+                        <img
+                          src={cartIcon}
+                          alt="加入購物車"
+                          className={style.cartIcon}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-          <div className="my-3"></div>
-        </div>
+            ))}
+            <div className="my-3"></div>
+          </div>
+        )}
       </div>
     </>
   );
