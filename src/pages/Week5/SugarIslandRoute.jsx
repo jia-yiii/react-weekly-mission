@@ -7,6 +7,7 @@ import SugarPdContent from "./SugarPdContent";
 import SugarNotFound from "./SugarNotFound";
 import Orders from "./Order";
 import AdminProducts from "./AdminProducts";
+import Footer from "../../components/Footer";
 
 export default function SugarIslandRoute() {
   return (
@@ -21,6 +22,7 @@ export default function SugarIslandRoute() {
         <Route path="pdlist/:id" element={<SugarPdContent />} />
         <Route path="*" element={<SugarNotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 }
