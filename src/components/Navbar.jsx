@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleToggle = () => setIsOpen((prev) => !prev);
+  const handleNavClick = () => setIsOpen(false);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid ">
@@ -8,39 +13,47 @@ export default function Navbar() {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={isOpen}
           aria-label="Toggle navigation"
+          onClick={handleToggle}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div
+          className={`collapse navbar-collapse${isOpen ? " show" : ""}`}
+          id="navbarNav"
+        >
           <ul className="navbar-nav ms-auto">
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week1">第 1 週</NavLink>
+              <NavLink to="/Week1" onClick={handleNavClick}>
+                第 1 週
+              </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week2">第 2 週</NavLink>
+              <NavLink to="/Week2" onClick={handleNavClick}>
+                第 2 週
+              </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week3">第 3 週</NavLink>
+              <NavLink to="/Week3" onClick={handleNavClick}>
+                第 3 週
+              </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week4">第 4 週</NavLink>
+              <NavLink to="/Week4" onClick={handleNavClick}>
+                第 4 週
+              </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/sugarIsland">第 5 週</NavLink>
+              <NavLink to="/sugarIsland" onClick={handleNavClick}>
+                第 5-6 週
+              </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week6">第 6 週</NavLink>
-            </li>
-            <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week7">第 7 週</NavLink>
-            </li>
-            <li className="nav-item mx-2 px-2 text-center ">
-              <NavLink to="/Week8">第 8 週</NavLink>
+              <NavLink to="/Week7" onClick={handleNavClick}>
+                第 7 週
+              </NavLink>
             </li>
           </ul>
         </div>
