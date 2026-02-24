@@ -25,7 +25,7 @@ function Week6() {
       const payload = { username: data.email, password: data.password };
       const res = await axios.post(`${API_BASE}/admin/signin`, payload);
       const { token, expired } = res.data;
-      document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
+      document.cookie = `hexToken=${token};expires=${new Date(expired)};path=/;`;
       axios.defaults.headers.common.Authorization = token;
       setIsAuth(true);
       await actions.syncCartAfterLogin();
