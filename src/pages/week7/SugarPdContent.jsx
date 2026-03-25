@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { ThreeDots } from "react-loader-spinner";
 
 import axios from "axios";
-import W5Navbar from "@/components/W5Navbar";
+import W6Navbar from "@/components/W6Navbar";
 import styles from "./sugarPdContent.module.css";
 import cartIcon from "@/assets/sugarIsland/cart_icon2.png";
 import { CartContext } from "../../store";
@@ -65,7 +65,7 @@ function SugarPdContent() {
 
   return (
     <>
-      <W5Navbar basePath="/week7" />
+      <W6Navbar basePath="/week7" />
 
       <div className="container">
         <div className="mt-4 ms-4 d-flex justify-content-start">

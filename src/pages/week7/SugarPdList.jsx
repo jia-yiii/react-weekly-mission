@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
 
-import W5Navbar from "@/components/W5Navbar";
+import W6Navbar from "@/components/W6Navbar";
 import style from "./sugarPdList0.module.css";
 import cartIcon from "@/assets/sugarIsland/cart_icon2.png";
 import { CartContext } from "../../store";
@@ -43,7 +43,7 @@ function SugarPdList() {
 
   return (
     <>
-      <W5Navbar basePath="/week7" />
+      <W6Navbar basePath="/week7" />
       <div className={`d-flex align-items-center ${style.header}`}>
         <div className={`flex-fill ${style.headerBanner}`}>
           <br />
@@ -84,9 +84,7 @@ function SugarPdList() {
                     <div className="d-flex justify-content-center align-items-center">
                       <div
                         className={`btn btn-light me-2 ${style.btn}`}
-                        onClick={() =>
-                          navigate(`/week7/pdlist/${item.id}`)
-                        }
+                        onClick={() => navigate(`/week7/pdlist/${item.id}`)}
                       >
                         查看細節
                       </div>

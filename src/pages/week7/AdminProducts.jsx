@@ -5,7 +5,7 @@ import * as bootstrap from "bootstrap";
 import week4Css from "../week4/week4.module.css";
 import ProductModal from "../../components/ProductModal";
 import Pagination from "../../components/Pagination";
-import W5Navbar from "../../components/W5Navbar";
+import W6Navbar from "../../components/W6Navbar";
 import style from "./adminProducts.module.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
@@ -182,7 +182,7 @@ function AdminProducts() {
 
   return (
     <>
-      <W5Navbar basePath="/week7" />
+      <W6Navbar basePath="/week7" />
       <div className={`d-flex align-items-center ${style.header}`}>
         <div className={`flex-fill ${style.headerBanner}`}>
           <br />

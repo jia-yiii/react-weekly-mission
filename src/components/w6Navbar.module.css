@@ -1,5 +1,6 @@
 .navbarBg {
   background-color: #f3dfd6;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.492);
 }
 
 .navbarText {
@@ -38,4 +39,25 @@
   right: 2px;
   font-size: 12px;
   padding: 4px 6px;
+}
+
+.navList {
+  width: auto;
+}
+
+.navItem {
+  margin-right: 1rem;
+}
+
+@media (max-width: 991.98px) {
+  .navList {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0;
+  }
+
+  .navItem {
+    margin-right: 0;
+  }
 }

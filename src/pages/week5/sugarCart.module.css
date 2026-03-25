@@ -1,0 +1,41 @@
+.calculateInput {
+  border: gray;
+  width: 52px;
+  min-width: 52px;
+  padding: 0.25rem 0;
+  font-variant-numeric: tabular-nums;
+}
+.tableBg th {
+  background: #ba9787;
+  color: white;
+  text-shadow: 1px 1px rgb(77, 67, 55);
+}
+
+.btn {
+  background-color: #b27e66e8;
+  border: #b27e66e8;
+  font-weight: bold;
+  text-shadow: 1px 1px rgb(77, 67, 55);
+  color: white;
+}
+
+.btn:hover {
+  color: rgb(77, 67, 55);
+  text-shadow: 1px 1px rgb(226, 223, 223);
+  background-color: #f3dfd6e8;
+  border: #f3dfd6e8;
+  transform: scale(1.05);
+  transition: 0.1s ease;
+}
+
+.pdPhoto {
+  width: 150px;
+  height: 150px;
+}
+
+.pdPhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}

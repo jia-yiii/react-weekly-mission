@@ -46,7 +46,7 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/week6" onClick={handleNavClick}>
+              <NavLink to="/week5" onClick={handleNavClick}>
                 第 5 週
               </NavLink>
             </li>

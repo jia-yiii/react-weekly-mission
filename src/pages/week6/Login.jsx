@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import W5Navbar from "../../components/W5Navbar";
+import W5Navbar from "../../components/W6Navbar";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";

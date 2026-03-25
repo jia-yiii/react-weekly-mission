@@ -2,7 +2,7 @@ import { useContext, useEffect, useState, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { CartContext } from "../../store";
 import axios from "axios";
-import Navbar from "../../components/W5Navbar";
+import Navbar from "../../components/W6Navbar";
 import CartTable from "../../components/CartTable";
 import style from "./order.module.css";
 import { useForm } from "react-hook-form";

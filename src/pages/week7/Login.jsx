@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import W5Navbar from "../../components/W5Navbar";
+import W6Navbar from "../../components/W6Navbar";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -50,7 +50,7 @@ function Login() {
 
   return (
     <>
-      <W5Navbar basePath="/week7" />
+      <W6Navbar basePath="/week7" />
       <div className="row justify-content-center">
         <h1 className="h3 mb-3 font-weight-normal my-5 py-3">登入</h1>
         <div className="col-12 col-md-6 col-lg-5">

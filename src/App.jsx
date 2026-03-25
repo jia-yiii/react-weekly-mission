@@ -10,7 +10,8 @@ import Week1 from "./pages/week1/Week1";
 import Week2 from "./pages/week2/Week2";
 import Week3 from "./pages/week3/Week3";
 import Week4 from "./pages/week4/Week4";
-import SugarIsland from "./pages/week6/SugarIslandRoute";
+import Week5 from "./pages/week5/SugarIslandRoute";
+import Week6 from "./pages/week6/SugarIslandRoute";
 import Week7 from "./pages/week7/Week7Route";
 import NotFound from "./pages/NotFound";
 
@@ -241,8 +242,8 @@ function App() {
         <Route path="/week2" element={<Week2 />} />
         <Route path="/week3" element={<Week3 />} />
         <Route path="/week4" element={<Week4 />} />
-        <Route path="/week5/*" element={<SugarIsland />} />
-        <Route path="/week6/*" element={<SugarIsland />} />
+        <Route path="/week5/*" element={<Week5 />} />
+        <Route path="/week6/*" element={<Week6 />} />
         <Route path="/week7/*" element={<Week7 />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

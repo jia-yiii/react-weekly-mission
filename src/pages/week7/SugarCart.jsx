@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { CartContext } from "../../store";
-import W5Navbar from "@/components/W5Navbar";
+import W6Navbar from "@/components/W6Navbar";
 import style from "./sugarCart.module.css";
 import CartTable from "../../components/CartTable";
 
@@ -43,7 +43,7 @@ function SugarCart() {
 
   return (
     <>
-      <W5Navbar basePath="/week7" />
+      <W6Navbar basePath="/week7" />
       <div className={`d-flex align-items-center ${style.header}`}>
         <div className={`flex-fill ${style.headerBanner}`}>
           <br />

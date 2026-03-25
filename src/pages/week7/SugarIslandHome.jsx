@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import W5Navbar from "@/components/W5Navbar";
+import W6Navbar from "@/components/W6Navbar";
 import style from "./sugarIslandHome.module.css";
 
 function SugarIslandHome() {
   return (
     <>
-      <W5Navbar basePath="/week7" />
+      <W6Navbar basePath="/week7" />
       <div>
         <div
           id="apple"
