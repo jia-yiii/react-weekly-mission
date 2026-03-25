@@ -4,7 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
 
 import W5Navbar from "@/components/W5Navbar";
-import style from "@/pages/Week5/SugarPdList0.module.css";
+import style from "./sugarPdList0.module.css";
 import cartIcon from "@/assets/sugarIsland/cart_icon2.png";
 import { CartContext } from "../../store";
 
@@ -85,7 +85,7 @@ function SugarPdList() {
                       <div
                         className={`btn btn-light me-2 ${style.btn}`}
                         onClick={() =>
-                          navigate(`/sugarIsland/pdlist/${item.id}`)
+                          navigate(`/week6/pdlist/${item.id}`)
                         }
                       >
                         查看細節

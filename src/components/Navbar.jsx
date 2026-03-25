@@ -26,32 +26,37 @@ export default function Navbar() {
         >
           <ul className="navbar-nav ms-auto">
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week1" onClick={handleNavClick}>
+              <NavLink to="/week1" onClick={handleNavClick}>
                 第 1 週
               </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week2" onClick={handleNavClick}>
+              <NavLink to="/week2" onClick={handleNavClick}>
                 第 2 週
               </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week3" onClick={handleNavClick}>
+              <NavLink to="/week3" onClick={handleNavClick}>
                 第 3 週
               </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week4" onClick={handleNavClick}>
+              <NavLink to="/week4" onClick={handleNavClick}>
                 第 4 週
               </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/sugarIsland" onClick={handleNavClick}>
-                第 5-6 週
+              <NavLink to="/week6" onClick={handleNavClick}>
+                第 5 週
               </NavLink>
             </li>
             <li className="nav-item mx-2 px-2 text-center">
-              <NavLink to="/Week7" onClick={handleNavClick}>
+              <NavLink to="/week6" onClick={handleNavClick}>
+                第 6 週
+              </NavLink>
+            </li>
+            <li className="nav-item mx-2 px-2 text-center">
+              <NavLink to="/week7" onClick={handleNavClick}>
                 第 7 週
               </NavLink>
             </li>

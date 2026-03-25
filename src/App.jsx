@@ -5,13 +5,13 @@ import axios from "axios";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Homepage from "./pages/Homepage";
-import Week1 from "./pages/Week1";
-import Week2 from "./pages/Week2";
-import Week3 from "./pages/Week3";
-import Week4 from "./pages/Week4";
-import SugarIsland from "./pages/Week5/SugarIslandRoute";
-import Week7 from "./pages/Week7";
+import Homepage from "./pages/homepage/Homepage";
+import Week1 from "./pages/week1/Week1";
+import Week2 from "./pages/week2/Week2";
+import Week3 from "./pages/week3/Week3";
+import Week4 from "./pages/week4/Week4";
+import SugarIsland from "./pages/week6/SugarIslandRoute";
+import Week7 from "./pages/week7/Week7Route";
 import NotFound from "./pages/NotFound";
 
 const CART_LS_KEY = "cart";
@@ -237,12 +237,13 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/Week1" element={<Week1 />} />
-        <Route path="/Week2" element={<Week2 />} />
-        <Route path="/Week3" element={<Week3 />} />
-        <Route path="/Week4" element={<Week4 />} />
-        <Route path="/sugarIsland/*" element={<SugarIsland />} />
-        <Route path="/Week7" element={<Week7 />} />
+        <Route path="/week1" element={<Week1 />} />
+        <Route path="/week2" element={<Week2 />} />
+        <Route path="/week3" element={<Week3 />} />
+        <Route path="/week4" element={<Week4 />} />
+        <Route path="/week5/*" element={<SugarIsland />} />
+        <Route path="/week6/*" element={<SugarIsland />} />
+        <Route path="/week7/*" element={<Week7 />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </CartContext.Provider>

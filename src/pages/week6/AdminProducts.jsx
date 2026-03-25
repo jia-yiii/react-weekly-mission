@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
 import * as bootstrap from "bootstrap";
-import week4Css from "../week4.module.css";
+import week4Css from "../week4/week4.module.css";
 import ProductModal from "../../components/ProductModal";
 import Pagination from "../../components/Pagination";
 import W5Navbar from "../../components/W5Navbar";

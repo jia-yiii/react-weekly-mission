@@ -6,7 +6,7 @@ import cart from "@/assets/sugarIsland/sugarland_cart22.png";
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../store";
 
-export default function W5Navbar() {
+export default function W5Navbar({ basePath = "/week6" }) {
   const navigate = useNavigate();
   const [isAuth, setIsAuth] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,7 @@ export default function W5Navbar() {
     document.cookie = "hexToken=; max-age=0; path=/;";
     setIsAuth(false);
     actions.clearCart();
-    navigate("/sugarIsland");
+    navigate(basePath);
   };
   return (
     <>
@@ -36,7 +36,7 @@ export default function W5Navbar() {
       >
         <div className="container-fluid">
           <div className={w5NavbarCss.header}>
-            <NavLink to="/sugarIsland" className={`navbar-brand`}>
+            <NavLink to={basePath} className={`navbar-brand`}>
               <img src={logo} alt="logo" className={w5NavbarCss.logo} />
             </NavLink>
           </div>
@@ -61,7 +61,7 @@ export default function W5Navbar() {
             >
               <li className={`nav-item me-3 ${w5NavbarCss.navItem}`}>
                 <NavLink
-                  to="/sugarIsland/pdlist"
+                  to={`${basePath}/pdlist`}
                   className={`nav-link rounded ${w5NavbarCss.navbarText}`}
                   onClick={handleNavClick}
                 >
@@ -74,7 +74,7 @@ export default function W5Navbar() {
               </li>
               <li className="nav-item me-3">
                 <NavLink
-                  to="/sugarIsland/cart"
+                  to={`${basePath}/cart`}
                   className={`nav-link rounded ${w5NavbarCss.navbarText}`}
                   onClick={handleNavClick}
                 >
@@ -92,7 +92,7 @@ export default function W5Navbar() {
                 {isAuth ? (
                   <div className="d-flex">
                     <NavLink
-                      to="/sugarIsland/admin/products"
+                      to={`${basePath}/admin/products`}
                       className={`nav-link rounded px-3 ${w5NavbarCss.navbarText}`}
                     >
                       <div className={`${w5NavbarCss.cartBtn}`}>
@@ -112,7 +112,7 @@ export default function W5Navbar() {
                   </div>
                 ) : (
                   <NavLink
-                    to="/sugarIsland/login"
+                    to={`${basePath}/login`}
                     className={`nav-link rounded px-3 ${w5NavbarCss.navbarText}`}
                     onClick={handleNavClick}
                   >

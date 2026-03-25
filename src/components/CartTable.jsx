@@ -1,4 +1,4 @@
-import style from "../pages/Week5/sugarCart.module.css";
+import style from "../pages/week6/sugarCart.module.css";
 export default function CartTable({
   cartList,
   totalPrice,

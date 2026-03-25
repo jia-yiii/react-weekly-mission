@@ -34,16 +34,16 @@ function SugarCart() {
 
     if (!token) {
       alert("請先登入");
-      navigate("/sugarIsland/login");
+      navigate("/week7/login");
       return;
     }
 
-    navigate("/sugarIsland/order");
+    navigate("/week7/order");
   };
 
   return (
     <>
-      <W5Navbar />
+      <W5Navbar basePath="/week7" />
       <div className={`d-flex align-items-center ${style.header}`}>
         <div className={`flex-fill ${style.headerBanner}`}>
           <br />
@@ -55,7 +55,7 @@ function SugarCart() {
         <div className="my-5"></div>
         <div className="mt-4 ms-4 d-flex justify-content-start">
           <NavLink
-            to="/sugarIsland/pdlist"
+            to="/week7/pdlist"
             className={`btn btn-primary rounded px-3 ${style.btn}`}
           >
             回到產品列表

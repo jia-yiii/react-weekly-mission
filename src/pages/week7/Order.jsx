@@ -35,7 +35,7 @@ function Order() {
 
       alert("訂單已完成✅ 訂單編號：" + res.data.orderId);
       actions.clearCart();
-      navigate("/sugarIsland");
+      navigate("/week7");
     } catch (err) {
       console.error(err);
       console.log("status:", err.response?.status);
@@ -46,7 +46,7 @@ function Order() {
 
   return (
     <>
-      <Navbar />
+      <Navbar basePath="/week7" />
       <div className={`d-flex align-items-center ${style.header}`}>
         <div className={`flex-fill ${style.headerBanner}`}>
           <br />
@@ -57,7 +57,7 @@ function Order() {
       <div className="container">
         <div className="mt-4 ms-4 d-flex justify-content-start">
           <NavLink
-            to="/sugarIsland/cart"
+            to="/week7/cart"
             className={`btn ${style.btn} rounded px-3 `}
           >
             回到購物車

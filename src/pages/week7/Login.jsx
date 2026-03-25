@@ -7,7 +7,7 @@ import { CartContext } from "../../store";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
-function Week6() {
+function Login() {
   const navigate = useNavigate();
   const { actions } = useContext(CartContext);
   const [isAuth, setIsAuth] = useState(false);
@@ -30,7 +30,7 @@ function Week6() {
       setIsAuth(true);
       await actions.syncCartAfterLogin();
       await actions.fetchCartFromApi();
-      navigate("/sugarIsland/admin/products");
+      navigate("/week7/admin/products");
     } catch (error) {
       const msg = error?.response?.data?.message || "未知錯誤";
       alert("登入失敗: " + msg);
@@ -50,7 +50,7 @@ function Week6() {
 
   return (
     <>
-      <W5Navbar />
+      <W5Navbar basePath="/week7" />
       <div className="row justify-content-center">
         <h1 className="h3 mb-3 font-weight-normal my-5 py-3">登入</h1>
         <div className="col-12 col-md-6 col-lg-5">
@@ -109,4 +109,4 @@ function Week6() {
   );
 }
 
-export default Week6;
+export default Login;

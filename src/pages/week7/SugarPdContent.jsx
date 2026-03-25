@@ -41,7 +41,7 @@ function SugarPdContent() {
   if (!product)
     return (
       <>
-        <W5Navbar />
+        <W5Navbar basePath="/week7" />
         <div className="container py-5 d-flex justify-content-center">
           <ThreeDots height="80" width="80" color="#ba9787" />
         </div>
@@ -65,12 +65,12 @@ function SugarPdContent() {
 
   return (
     <>
-      <W5Navbar />
+      <W5Navbar basePath="/week7" />
 
       <div className="container">
         <div className="mt-4 ms-4 d-flex justify-content-start">
           <NavLink
-            to="/sugarIsland/pdlist"
+            to="/week7/pdlist"
             className={`btn btn-light rounded px-3 mx-4 ${styles.btn}`}
           >
             回到產品列表

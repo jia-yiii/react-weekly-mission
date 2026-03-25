@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 import W5Navbar from "@/components/W5Navbar";
-import style from "@/pages/Week5/week5.module.css";
+import style from "./sugarIslandHome.module.css";
 
-function Week5() {
+function SugarIslandHome() {
   return (
     <>
-      <W5Navbar />
+      <W5Navbar basePath="/week7" />
       <div>
         <div
           id="apple"
@@ -53,7 +53,7 @@ function Week5() {
                 </p>
 
                 <NavLink
-                  to="/sugarIsland/pdlist"
+                  to="/week7/pdlist"
                   className="btn btn-light rounded-pill px-4"
                 >
                   進入糖嶼
@@ -75,7 +75,7 @@ function Week5() {
                 </p>
 
                 <NavLink
-                  to="/sugarIsland/pdlist"
+                  to="/week7/pdlist"
                   className="btn btn-light rounded-pill px-4"
                 >
                   進入糖嶼
@@ -97,7 +97,7 @@ function Week5() {
                 </p>
 
                 <NavLink
-                  to="/sugarIsland/pdlist"
+                  to="/week7/pdlist"
                   className="btn btn-light rounded-pill px-4"
                 >
                   進入糖嶼
@@ -135,4 +135,4 @@ function Week5() {
   );
 }
 
-export default Week5;
+export default SugarIslandHome;

@@ -1,0 +1,31 @@
+.header {
+  background-image: url("https://images.unsplash.com/photo-1603950226831-9a4464885f2f?q=80&w=1552&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-position: top;
+  background-size: cover;
+  height: 30vh;
+}
+.headerBanner {
+  background-color: rgba(236, 234, 229, 0.527);
+}
+
+.headerText {
+  color: rgb(241, 241, 241);
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.tableTr th {
+  background: #ba9787;
+  color: white;
+  text-shadow: 1px 1px rgb(77, 67, 55);
+}
+
+.btn {
+  background-color: #ebc3af;
+  border: #ebc3af;
+}
+.btn:hover {
+  background-color: #f3dfd6e8;
+  border: #f3dfd6e8;
+  transform: scale(1.05);
+  transition: 0.1s ease;
+}

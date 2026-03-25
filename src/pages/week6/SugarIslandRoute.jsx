@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import SugarHome from "./Week5"; //sugarIsland首頁（第五周作業）
-import SugarLogin from "./Week6";
+import SugarHome from "./SugarIslandHome";
+import SugarLogin from "./Login";
 import SugarPdList from "./SugarPdList";
 import SugarCart from "./SugarCart";
 import SugarPdContent from "./SugarPdContent";

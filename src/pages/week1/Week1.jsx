@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../App.css";
+import "../../App.css";
 
 function Week1() {
   const [tempProduct, setTempProduct] = useState(null);
