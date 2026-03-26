@@ -6,9 +6,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import App from "./App.jsx";
 import "./index.css";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 createRoot(document.getElementById("root")).render(
   <HashRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </HashRouter>,
 );

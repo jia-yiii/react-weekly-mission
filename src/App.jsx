@@ -14,6 +14,7 @@ import Week5 from "./pages/week5/SugarIslandRoute";
 import Week6 from "./pages/week6/SugarIslandRoute";
 import Week7 from "./pages/week7/Week7Route";
 import NotFound from "./pages/NotFound";
+import MessageToast from "./components/MessageToast";
 
 const CART_LS_KEY = "cart";
 const API_BASE = import.meta.env.VITE_API_BASE;
@@ -235,6 +236,7 @@ function App() {
   }, []);
   return (
     <CartContext.Provider value={{ state, actions }}>
+      <MessageToast />
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />

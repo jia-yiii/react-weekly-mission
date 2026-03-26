@@ -7,6 +7,9 @@ import ProductModal from "../../components/ProductModal";
 import Pagination from "../../components/Pagination";
 import W6Navbar from "../../components/W6Navbar";
 import style from "./adminProducts.module.css";
+import { useDispatch } from "react-redux";
+import { createAsyncMessage } from "../../slice/messageSlice";
+import useMessage from "../../hook/useMessage";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
@@ -26,8 +29,11 @@ const defaultPd = {
 };
 
 function AdminProducts() {
+  const dispatch = useDispatch();
+  const { showSuccess, showError } = useMessage();
   const productModalRef = useRef(null);
   const modalElRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -46,9 +52,7 @@ function AdminProducts() {
       setProducts(res.data.products);
       setCurrentPage(1);
     } catch (err) {
-      if (err?.response?.status === 401) {
-        setIsAuth(false);
-      }
+      dispatch(createAsyncMessage(err.response.data));
     }
   };
 
@@ -97,20 +101,30 @@ function AdminProducts() {
         },
       };
 
+      let response;
       if (isNew) {
-        await axios.post(`${API_BASE}/api/${API_PATH}/admin/product`, payload);
+        response = await axios.post(
+          `${API_BASE}/api/${API_PATH}/admin/product`,
+          payload,
+        );
       } else {
-        await axios.put(
+        response = await axios.put(
           `${API_BASE}/api/${API_PATH}/admin/product/${tempPD.id}`,
           payload,
         );
       }
+
+      document.activeElement?.blur();
       productModalRef.current?.hide();
+      setShowModal(false);
       setTempPd(defaultPd);
       setNewImageUrl("");
+      showSuccess("更新成功！");
       await getProduct();
     } catch (err) {
-      alert(err?.response?.data?.message || "更新失敗");
+      // showError("更新失敗");
+      setShowModal(false);
+      dispatch(createAsyncMessage(err.response.data));
     }
   };
 
@@ -124,6 +138,7 @@ function AdminProducts() {
   const createNew = () => {
     setIsNew(true);
     setTempPd(defaultPd);
+    setShowModal(true);
     productModalRef.current?.show();
   };
 
@@ -134,6 +149,7 @@ function AdminProducts() {
       imageUrl: item.imageUrl || "",
       imagesUrl: item.imagesUrl || [],
     });
+    setShowModal(true);
     productModalRef.current?.show();
   };
 
@@ -168,8 +184,10 @@ function AdminProducts() {
   };
 
   const cancelSubmit = () => {
+    document.activeElement?.blur();
     setTempPd(defaultPd);
     setNewImageUrl("");
+    setShowModal(false);
     productModalRef.current?.hide();
   };
 
@@ -261,6 +279,7 @@ function AdminProducts() {
         </div>
       )}
       <ProductModal
+        show={showModal}
         ref={modalElRef}
         isNew={isNew}
         tempPD={tempPD}
