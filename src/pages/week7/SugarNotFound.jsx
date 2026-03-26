@@ -9,7 +9,7 @@ function SugarNotFound() {
       <p className="my-5">這裡沒有好吃的蛋糕 😢</p>
 
       <NavLink
-        to="/week7/pdlist"
+        to="/week7/"
         className="btn btn-secondary btn-outline-light rounded-pill px-4"
       >
         返回糖嶼
