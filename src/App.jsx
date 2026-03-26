@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { CartContext } from "./store";
 import { useReducer, useEffect } from "react";
 import axios from "axios";
@@ -21,11 +21,13 @@ const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
 
 function App() {
+  const location = useLocation();
   const initCart = loadLocalCart();
   const [state, dispatch] = useReducer(cartReducer, {
     cartList: initCart,
     totalPrice: totalPriceCalculate(initCart),
   });
+  const isHomepage = location.pathname === "/";
 
   const actions = {
     addToCart: async (payload) => {
@@ -237,7 +239,7 @@ function App() {
   return (
     <CartContext.Provider value={{ state, actions }}>
       <MessageToast />
-      <Navbar />
+      {!isHomepage && <Navbar />}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/week1" element={<Week1 />} />
