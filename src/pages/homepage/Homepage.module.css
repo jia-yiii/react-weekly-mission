@@ -1,0 +1,259 @@
+.homepage {
+  padding-bottom: 72px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 112px 0 88px;
+  color: #fffaf3;
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroBackdrop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(50, 28, 17, 0.28), rgba(50, 28, 17, 0.52));
+}
+
+.heroInner {
+  position: relative;
+  text-align: left;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 250, 243, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 250, 243, 0.14);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  max-width: 700px;
+  margin-bottom: 20px;
+  font-size: clamp(2.4rem, 4vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.heroText {
+  max-width: 720px;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 250, 243, 0.88);
+}
+
+.cardSection {
+  margin-top: 30px;
+}
+
+.sectionHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 28px;
+  padding: 0 4px;
+  text-align: left;
+}
+
+.sectionLabel {
+  margin-bottom: 8px;
+  color: #b26d3f;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: #4f2e1f;
+  font-size: clamp(1.8rem, 2.5vw, 2.7rem);
+  font-weight: 700;
+}
+
+.sectionText {
+  margin: 0;
+  color: #7c6357;
+  line-height: 1.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 24px;
+  border: 1px solid rgba(184, 126, 81, 0.16);
+  border-radius: 24px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(255, 248, 241, 0.96)
+    ),
+    #fff;
+  box-shadow: 0 18px 45px rgba(106, 68, 44, 0.08);
+  text-align: left;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 50px rgba(106, 68, 44, 0.14);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.weekBadge,
+.accentBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.weekBadge {
+  background: #fce7cf;
+  color: #8d4b1f;
+}
+
+.accentBadge {
+  background: rgba(111, 63, 33, 0.08);
+  color: #6f3f21;
+}
+
+.cardBody {
+  flex: 1;
+}
+
+.cardTitle {
+  margin-bottom: 14px;
+  color: #482616;
+  font-size: 1.45rem;
+  line-height: 1.35;
+}
+
+.cardSummary {
+  margin-bottom: 20px;
+  color: #6f5c52;
+  line-height: 1.8;
+}
+
+.highlightBlock {
+  padding: 16px;
+  border-radius: 18px;
+  background: #fff4e8;
+}
+
+.highlightTitle {
+  margin-bottom: 12px;
+  color: #9a5826;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.highlightList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlightItem {
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #6c4329;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.cardLink {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  padding: 13px 18px;
+  border-radius: 16px;
+  background: #6c4329;
+  color: #fff7ef;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cardLink:hover {
+  background: #8b5735;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 991px) {
+  .hero {
+    padding: 92px 0 74px;
+  }
+
+  .sectionHeading {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .homepage {
+    padding-bottom: 56px;
+  }
+
+  .hero {
+    padding: 72px 0 60px;
+  }
+
+  .cardSection {
+    margin-top: -26px;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardTitle {
+    font-size: 1.25rem;
+  }
+}
